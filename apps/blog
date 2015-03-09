@@ -1,0 +1,21 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+  	ServerAdmin simon.opitz@eventsos.de 
+	ServerName simonopitz.me
+
+  	ProxyRequests off
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+ 
+    <Location />
+        ProxyPass http://localhost:3000/
+        ProxyPassReverse http://localhost:3000/
+    </Location>
+
+	ErrorLog /var/www/vhosts/simonopitz.me/log/error.log
+	LogLevel warn
+	CustomLog /var/www/vhosts/simonopitz.me/log/access.log combined
+</VirtualHost>
