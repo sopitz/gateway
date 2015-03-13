@@ -11,7 +11,7 @@ NameVirtualHost *:80
         </Proxy>
  
         <Location />
-            ProxyPass http://localhost:3000/
-            ProxyPassReverse http://localhost:3000/
+            ProxyPass http://blog.simonopitz.me:3000/ retry=0
+            ProxyPassReverse http://blog.simonopitz.me:3000/
         </Location>
 </VirtualHost>
