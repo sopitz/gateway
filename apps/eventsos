@@ -1,0 +1,24 @@
+NameVirtualHost *:443
+
+<VirtualHost *:443>
+  	ServerAdmin simon.opitz@eventsos.de 
+	ServerName eventsos.de 
+
+	SSLEngine on
+
+  	ProxyRequests off
+        <Proxy *>
+            Order deny,allow
+            Allow from all
+        </Proxy>
+	
+	SSLCertificateFile /etc/ssl/eventsos.crt
+	SSLCertificateKeyFile /etc/ssl/eventsos.key
+	SSLCertificateChainFile /etc/ssl/thawte.crt
+ 
+        <Location />
+            ProxyPass http://docker_eventsosapache_1.simonopitz.me:5050/ retry=0
+            ProxyPassReverse http://docker_eventsosapache_1.simonopitz.me:5050/
+        </Location>
+</VirtualHost>
+

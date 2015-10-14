@@ -1,0 +1,19 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+  	ServerAdmin simon.opitz@eventsos.de 
+	ServerName lobpreisabendmuenchen.de
+	ServerAlias www.lobpreisabendmuenchen.de
+
+  	ProxyRequests off
+        <Proxy *>
+            Order deny,allow
+            Allow from all
+        </Proxy>
+ 
+        <Location />
+            ProxyPass http://loverevolution.simonopitz.me/ retry=0
+            ProxyPassReverse http://loverevolution.simonopitz.me/
+        </Location>
+</VirtualHost>
+
